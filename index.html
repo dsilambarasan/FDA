@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="fdaapp">
+  <head>
+    <meta charset="UTF-8">
+    <title>Drug Report</title>
+  	
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/drug-report.css">
+  	
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular-animate.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.0/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="script/drug-report.js"></script>
+  </head>
+  <body class="container" ng-controller="fdaCtrl">
+	  <div class="panel panel-primary">
+		  <div class="panel-heading">Adverse Drug Reaction Search</div>
+		  <div class="panel-body">
+		  	 <div class="col-md-3"></div>
+		     <div class="col-md-6">
+			     <div class="input-group">
+			       <input type="text" ng-model="drugName" class="form-control" placeholder="Search for..." />
+			       <span class="input-group-btn">
+			         <button class="btn btn-default" ng-disabled="drugName==null || drugName.length==0" ng-click="makeDrugURL()" type="button">Go!</button>
+			       </span>
+			     </div><!-- /input-group -->
+			     <br>
+         </div><!-- /.col-lg-6 -->
+       </div><!-- panel-body -->
+		   <div class="col-md-3"></div>
+    </div><!-- panel-primary -->
+    {{totalDrugData |number:0}}
+	  Adverse Reactions
+	  -------
+    Most Common Adverse Reactions
+    <table border="0" data-ng-repeat="drug in countDrugData | limitTo:10">
+		  <tr>
+			  <td>{{drug.count}}</td>
+			  <td>{{drug.term}}</td>
+		  </tr>
+    </table>
+  </body>
+</html>
