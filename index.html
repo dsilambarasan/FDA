@@ -1,45 +1,211 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="fdaapp">
-  <head>
-    <meta charset="UTF-8">
-    <title>Drug Report</title>
-    
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/drug-report.css">
-    
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular-animate.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.0/ui-bootstrap-tpls.min.js"></script>
-    <script type="text/javascript" src="script/drug-report.js"></script>
-  </head>
-  <body class="container" ng-controller="fdaCtrl">
-    <div class="panel panel-primary">
-      <div class="panel-heading">Adverse Drug Reaction Search</div>
-      <div class="panel-body">
-         <div class="col-md-3"></div>
-         <div class="col-md-6">
-           <div class="input-group">
-             <input type="text" ng-model="drugName" class="form-control" placeholder="Search for..." />
-             <span class="input-group-btn">
-               <button class="btn btn-default" ng-disabled="drugName==null || drugName.length==0" ng-click="makeDrugURL()" type="button">Go!</button>
-             </span>
-           </div><!-- /input-group -->
-           <br>
-         </div><!-- /.col-lg-6 -->
-       </div><!-- panel-body -->
-       <div class="col-md-3"></div>
-    </div><!-- panel-primary -->
-    {{totalDrugData |number:0}}
-    Adverse Reactions
-    -------
-    Most Common Adverse Reactions
-    <table border="0" data-ng-repeat="drug in countDrugData | limitTo:10">
-      <tr>
-        <td>{{drug.count}}</td>
-        <td>{{drug.term}}</td>
-      </tr>
-    </table>
-  </body>
+<html lang="en"  ng-app="fdaapp" >
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <title>Drug Search</title>
+      <!-- Bootstrap core CSS -->
+      <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="css/drug-report.css">
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+      <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular-animate.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="http://ec2-54-151-157-164.ap-southeast-1.compute.amazonaws.com/sites/all/themes/bootstrap/js/c3/c3.css" />
+      <script type="text/javascript" src="http://ec2-54-151-157-164.ap-southeast-1.compute.amazonaws.com/sites/all/themes/bootstrap/js/c3/bower_components/d3/d3.js"></script>
+      <script type="text/javascript" src="http://ec2-54-151-157-164.ap-southeast-1.compute.amazonaws.com/sites/all/themes/bootstrap/js/c3/bower_components/c3/c3.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.0/ui-bootstrap-tpls.min.js"></script>
+      <script type="text/javascript" src="script/drug-report.js"></script>
+      <link rel="stylesheet" href="http://css-spinners.com/css/spinner/spinner.css" type="text/css">
+      <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+      <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+      <style>
+         .navbar-header {float: left;padding: 15px;text-align: center;width: 100%;}
+         .navbar-brand {float:none;}
+      </style>
+      <script>
+         $(function() {
+           $( "#slider-range" ).slider({
+             range: true,
+             min: 0,
+             max: 99,
+             values: [ 0, 99 ],
+             slide: function( event, ui ) {
+               $( "#amount" ).val(ui.values[ 0 ] + "-" + ui.values[ 1 ] );
+               $( "#min" ).val(ui.values[ 0 ]);
+               $( "#max" ).val(ui.values[ 1 ]);
+             }
+           });
+           $( "#amount" ).val( $( "#slider-range" ).slider( "values", 0 ) +'-'+ $( "#slider-range" ).slider( "values", 1 ) );
+           
+           $( "#min" ).val( $( "#slider-range" ).slider( "values", 0 ));
+           $( "#max" ).val( $( "#slider-range" ).slider( "values", 1 ));
+         });
+      </script>
+   </head>
+   <body ng-controller="fdaCtrl">
+      <div class="container">
+         <nav class="navbar navbar-default">
+            <div class="navbar-header">
+               <!-- <button type="button" class="navbar-toggle collapsed custNavBar" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  </button> -->
+               <a class="navbar-brand" href="#">FDA Adverse Drug Reaction Search</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+               <ul class="nav navbar-nav">
+               </ul>
+            </div>
+         </nav>
+      </div>
+      <div class="container">
+         <div class="">
+            <div class="input-group">
+               <input type="text" class="form-control" ng-model="drugName" placeholder="Enter a Drug (Brand Name or Generic)" ng-enter>
+               <span class="input-group-btn">
+               <button type="button" class="btn btn-default" aria-label="Left Align" ng-disabled="drugName==null || drugName.length==0" ng-click="makeDrugURL()">
+               <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+               </button>
+               </span>
+            </div>
+            <div class="">
+               <br/>
+               <button type="button" class="btn btn-default chevron_toggleable" style="width:100%;" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+               Filter  <span class="toggle_arrow glyphicon glyphicon-chevron-down"></span>
+               </button><br/>
+               <div class="collapse" id="collapseExample">
+                  <div class="well" style="text-align:left;">
+                     <div>
+                        <div class="checkbox">
+                           <label>
+                              <input ng-model="chosen.isSerious" ng-change="seriousCheck()" type="checkbox">
+                              Seriousness
+                              <div class="radio">
+                           <label>
+                           <input type="radio" ng-change="seriousCheck()" ng-model="seriousness" value="1">
+                           Serious
+                           </label>
+                           </div>
+                           <div class="radio">
+                              <label>
+                              <input type="radio" ng-change="seriousCheck()" ng-model="seriousness" value="2">
+                              Non-Serious
+                              </label>
+                           </div>
+                           </label>
+                        </div>
+                        <div class="checkbox">
+                           <label>
+                              <input ng-model="chosen.isReport" ng-change="reportCheck()" type="checkbox">
+                              Method of Reporting
+                              <div class="radio">
+                           <label>
+                           <input type="radio" ng-change="reportCheck()"  ng-model="reporting" value="1">
+                           Via Public
+                           </label>
+                           </div>
+                           <div class="radio">
+                              <label>
+                              <input type="radio" ng-change="reportCheck()" ng-model="reporting" value="2">
+                              Via Manufacturer
+                              </label>
+                           </div>
+                           </label>
+                        </div>
+                        <div class="checkbox">
+                           <label>
+                              <input ng-model="chosen.isGender" ng-change="genderCheck()" type="checkbox">
+                              Gender
+                              <div class="radio">
+                           <label>
+                           <input type="radio" ng-change="genderCheck()" ng-model="gender" value="1">
+                           Male
+                           </label>
+                           </div>
+                           <div class="radio">
+                              <label>
+                              <input type="radio" ng-change="genderCheck()" ng-model="gender" value="2">
+                              Female
+                              </label>
+                           </div>
+                           </label>
+                        </div>
+                        <div class="checkbox">
+                           <label>
+                              <input ng-model="chosen.isAgeRange" ng-change="ageRangeCheck()" type="checkbox">
+                              Age Range
+                              <br/>
+                              <div class="form-group">
+                                 <br/>
+                                 <div class="col-sm-12">
+                                    <div id="slider-range"></div>
+                                    <input type="hidden" id="amount" readonly>
+                                 </div>
+                                 <br/>
+                                 <div class="col-xs-3">
+                                    <input type="text" class="form-control" id="min" ng-change="ageRangeCheck()" ng-model="fromage" placeholder="Min">
+                                 </div>
+                                 <div class="col-xs-3">
+                                    <input type="text" class="form-control" id="max" ng-change="ageRangeCheck()" ng-model="toage" placeholder="Max">
+                                 </div>
+                              </div>
+                           </label>
+                        </div>
+                        <!-- <div class="form-group">
+                           <button type="submit" ng-disabled="drugName==null ||  drugName.length==0"  ng-click="makeDrugURL()" class="btn btn-default">I'm Done!</button>
+                           </div> -->
+                     </div>
+                  </div>
+               </div>
+               <div class="customDiv text-center" ng-repeat="(key,value) in chosen" ng-show="value">
+                  <span ng-show="key=='isSerious'">Serious : 
+                  <span ng-bind="seriousness==1 ? 'Serious' : 'Non-Serious'"></span>
+                  <span class="close" ng-click="changeKey(key)">&times;</span> 
+                  </span>
+                  <span ng-show="key=='isReport'">Method of Reporting : 
+                  <span ng-bind="reporting==1 ? 'Via Public' : 'Via Manufacturer'"></span>
+                  <span class="close" ng-click="changeKey(key)">&times;</span> 
+                  </span> 
+                  <span ng-show="key=='isGender'">Gender : 
+                  <span ng-bind="gender==1 ? 'Male' : 'Female'"></span>
+                  <span class="close" ng-click="changeKey(key)">&times;</span> 
+                  </span> 
+                  <span ng-show="key=='isAgeRange'">Age Range : 
+                  <span>{{fromage}} - {{toage}}</span>
+                  <span class="close" ng-click="changeKey(key)">&times;</span> 
+                  </span> 
+               </div>
+               <div ng-show="myloader">
+                  <div class="spinner-loader">
+                     Loading…
+                  </div>
+               </div>
+               <div style="text-align: center;" ng-if="countDrugData!=null && totalDrugData!=null">
+                  <h1>{{totalDrugData |number:0}}</h1>
+                  <h2>Adverse Reactions</h2>
+                  <hr style="border-width:2px;border-color: #000000;" />
+                  <h4>10 Most Common Adverse Reactions</h4>
+                  <div id="chart"></div>
+                  <table border="0" style=" margin: 0 auto;">
+                     <tr data-ng-repeat="drug in countDrugData | limitTo:10">
+                        <td class="custTablePad">{{drug.count}}</td>
+                        <td class="custTablePad">{{drug.term}}</td>
+                     </tr>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </div>
+      <script type="text/javascript">
+         $('.chevron_toggleable').on('click', function() {
+          $('.toggle_arrow').toggleClass('glyphicon-chevron-down glyphicon-chevron-up');
+         });
+      </script>
+   </body>
 </html>
