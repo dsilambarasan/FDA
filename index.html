@@ -1,48 +1,54 @@
 <!DOCTYPE html>
-<html lang="en"  ng-app="fdaapp" >
+<html lang="en" ng-app="fdaapp" >
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Drug Search</title>
+    <title>Drug Report</title>
+
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://css-spinners.com/css/spinner/spinner.css" type="text/css">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="css/drug-report.css">
+    <link rel="stylesheet" type="text/css" href="http://ec2-54-151-157-164.ap-southeast-1.compute.amazonaws.com/sites/all/themes/bootstrap/js/c3/c3.css" />
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular-animate.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="http://ec2-54-151-157-164.ap-southeast-1.compute.amazonaws.com/sites/all/themes/bootstrap/js/c3/c3.css" />
     <script type="text/javascript" src="http://ec2-54-151-157-164.ap-southeast-1.compute.amazonaws.com/sites/all/themes/bootstrap/js/c3/bower_components/d3/d3.js"></script>
     <script type="text/javascript" src="http://ec2-54-151-157-164.ap-southeast-1.compute.amazonaws.com/sites/all/themes/bootstrap/js/c3/bower_components/c3/c3.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.0/ui-bootstrap-tpls.min.js"></script>
     <script type="text/javascript" src="script/drug-report.js"></script>
-    <link rel="stylesheet" href="http://css-spinners.com/css/spinner/spinner.css" type="text/css">
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <style>
-      .navbar-header {float: left;padding: 15px;text-align: center;width: 100%;}
-      .navbar-brand {float:none;}
+      .navbar-header {
+        float: left;padding: 15px;text-align: center;width: 100%;
+      }
+      .navbar-brand {
+        float:none;
+      }
     </style>
     <script>
       $(function() {
-        $( "#slider-range" ).slider({
+        $("#slider-range").slider({
           range: true,
           min: 0,
           max: 99,
           values: [ 0, 99 ],
-          slide: function( event, ui ) {
-            $( "#amount" ).val(ui.values[ 0 ] + "-" + ui.values[ 1 ] );
-            $( "#min" ).val(ui.values[ 0 ]);
-            $( "#max" ).val(ui.values[ 1 ]);
+          slide: function(event, ui) {
+            $("#amount").val(ui.values[ 0 ] + "-" + ui.values[ 1 ]);
+            $("#min").val(ui.values[ 0 ]);
+            $("#max").val(ui.values[ 1 ]);
           }
         });
-        $( "#amount" ).val( $( "#slider-range" ).slider( "values", 0 ) +'-'+ $( "#slider-range" ).slider( "values", 1 ) );
+        $("#amount").val($("#slider-range").slider("values", 0) +'-'+ $("#slider-range").slider("values", 1));
 
-        $( "#min" ).val( $( "#slider-range" ).slider( "values", 0 ));
-        $( "#max" ).val( $( "#slider-range" ).slider( "values", 1 ));
+        $("#min").val($("#slider-range").slider("values", 0));
+        $("#max").val($("#slider-range").slider("values", 1));
       });
     </script>
   </head>
