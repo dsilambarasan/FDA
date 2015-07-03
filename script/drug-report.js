@@ -1,3 +1,7 @@
+/**
+ * @file
+ * Drug report angular JS code.
+ */
 $(function() {
   $( "#slider-range" ).slider({
     range: true,
