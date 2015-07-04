@@ -7,15 +7,14 @@ $(function() {
     range: true,
     min: 1,
     max: 99,
-    values: [ 0, 99 ],
+    values: [0, 99],
     slide: function(event, ui) {
-      $("#amount").val(ui.values[ 0 ] + "-" + ui.values[ 1 ]);
-      $("#min").val(ui.values[ 0 ]);
-      $("#max").val(ui.values[ 1 ]);
+      $("#amount").val(ui.values[0] + "-" + ui.values[1]);
+      $("#min").val(ui.values[0]);
+      $("#max").val(ui.values[1]);
     }
   });
   $("#amount").val($("#slider-range").slider("values", 0) +'-'+ $("#slider-range").slider("values", 1));
-
   $("#min").val($("#slider-range").slider("values", 0));
   $("#max").val($("#slider-range").slider("values", 1));
 });
@@ -153,8 +152,14 @@ app.controller('fdaCtrl', function($scope, drugUtilities, $timeout) {
       url: drugTURL,
       data: {},
       success: function(data) {
-        //console.log(data);
-        $scope.totalDrugData = data.meta.results.total;
+        // console.log(data);
+        $scope.disclaimer	=	data.meta.disclaimer;
+        $scope.last_updated	=	data.meta.last_updated;
+        $scope.totalDrugData = data.meta.results.total;	
+      },
+      error: function(data) {
+        // console.log(data);
+        $scope.totalDrugData = [];
       }
     });
   }
@@ -168,6 +173,11 @@ app.controller('fdaCtrl', function($scope, drugUtilities, $timeout) {
       success: function(data) {
         // console.log(data);
         $scope.countDrugData = data.results;
+        $scope.donutChart();
+      },
+      error: function(data) {
+        // console.log(data);
+        $scope.countDrugData = [];
         $scope.donutChart();
       }
     });
@@ -187,11 +197,18 @@ app.controller('fdaCtrl', function($scope, drugUtilities, $timeout) {
         bindto: '#chart',
         data: {
           columns: $scope.donutArray,
-          type: 'donut',
+          type: 'pie'
         },
-        donut: {
-          title: ""
-        }
+        legend: {
+          position: 'right'
+        }//,
+        // pie: {
+        // label: {
+        // format: function (value, ratio, id) {
+        // return d3.format('$')(r);
+        // }
+        // }
+        // }
       });
     });
   }
@@ -235,6 +252,10 @@ angular.module('fdaapp').factory('drugUtilities', [
           // when the response is available
           if (options.success) {
             options.success(data, status, headers, config);
+          }
+        }).error(function(data, status, headers, config) {
+          if (options.error) {
+            options.error(data, status, headers, config);
           }
         });
       }

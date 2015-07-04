@@ -9,9 +9,9 @@
     <title>Drug Report</title>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="http://ec2-54-151-157-164.ap-southeast-1.compute.amazonaws.com/sites/all/themes/bootstrap/js/c3/c3.css" />
     <link rel="stylesheet" href="http://css-spinners.com/css/spinner/spinner.css" type="text/css">
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="http://ec2-54-151-157-164.ap-southeast-1.compute.amazonaws.com/sites/all/themes/bootstrap/js/c3/c3.css" />
     <link rel="stylesheet" type="text/css" href="css/drug-report.css">
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
@@ -23,6 +23,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.0/ui-bootstrap-tpls.min.js"></script>
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script type="text/javascript" src="script/drug-report.js"></script>
+
     <style>
       .navbar-header {
         float: left;
@@ -32,6 +33,20 @@
       }
       .navbar-brand {
         float:none;
+      }
+      .navbar-header{
+        background-color:rgb(31, 119, 180)!important;
+      }
+      .navbar-brand{
+        color:#fff!important;
+      }
+      .footer{
+        background-color:#F8F8F8!important
+      }
+      @media all and (min-width: 787px) {
+        .navbar-brand{
+          font-size:30px!important;
+        }
       }
     </style>
   </head>
@@ -63,12 +78,12 @@
             </button>
           </span>
         </div>
-        <div class="">
+        <div class="col-lg-4 col-xs-12">
           <br/>
           <button type="button" class="btn btn-default chevron_toggleable" style="width:100%;" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
             Filter  <span class="toggle_arrow glyphicon glyphicon-chevron-down"></span>
           </button><br/>
-          <div class="collapse" id="collapseExample">
+          <div class="collapse in" id="collapseExample">
             <div class="well" style="text-align:left;">
               <div>
                 <div class="checkbox">
@@ -136,11 +151,11 @@
                       <input type="hidden" id="amount" readonly>
                     </div>
                     <br/>
-                    <div class="col-xs-6 col-sm-3">
-                      <input type="number" class="form-control" id="min" ng-change="ageRangeCheck()" ng-model="fromage" placeholder="Min">
+                    <div class="col-xs-6 col-sm-4">
+                      <input type="number" class="form-control" id="min" ng-change="ageRangeCheck()" ng-model="fromage" min="1" max="100" placeholder="Min">
                     </div>
-                    <div class="col-xs-6 col-sm-3">
-                      <input type="number" class="form-control" id="max" ng-change="ageRangeCheck()" ng-model="toage" placeholder="Max">
+                    <div class="col-xs-6 col-sm-4">
+                      <input type="number" class="form-control" id="max" ng-change="ageRangeCheck()" ng-model="toage" min="1" max="100" placeholder="Max">
                     </div>
                   </div>
                 </div>
@@ -151,11 +166,11 @@
                     Year Range 
                   </label><br/>
                   <div class="form-group">
-                    <div class="col-xs-6 col-sm-3">
-                      <input type="number" class="form-control" ng-change="yearCheck()" ng-model="fromyear" placeholder="From Year">
+                    <div class="col-xs-6 col-sm-4">
+                      <input type="number" class="form-control" ng-change="yearCheck()" ng-model="fromyear" min="1970" max="2015" placeholder="From Year">
                     </div>
-                    <div class="col-xs-6 col-sm-3">
-                      <input type="number" class="form-control" ng-change="yearCheck()" ng-model="toyear" placeholder="To Year">
+                    <div class="col-xs-6 col-sm-4">
+                      <input type="number" class="form-control" ng-change="yearCheck()" ng-model="toyear" min="1970" max="2015" placeholder="To Year">
                     </div>
                   </div>
                 </div><br/>
@@ -166,6 +181,10 @@
               </div>
             </div>
           </div>
+
+        </div>
+        <div class="col-lg-8 col-xs-12">
+          <br/>
           <div class="customDiv text-center" ng-repeat="(key,value) in chosen" ng-show="value">
             <span ng-show="key=='isSerious'">Serious : 
               <span ng-bind="seriousness==1 ? 'Serious' : 'Non-Serious'"></span>
@@ -189,9 +208,9 @@
             </span> 
           </div>
 
-          <div style="text-align: center;" ng-if="countDrugData!=null && totalDrugData!=null">
+          <div style="text-align: center;" ng-if="countDrugData.length != 0 && totalDrugData.length != 0">
             <h1>{{totalDrugData |number:0}}</h1>
-            <h2>Adverse Reactions</h2>
+            <h2>Adverse Reactions <span ng-if="drugName.length != 0">for {{drugName}}</span> </h2>
             <hr style="border-width:2px;border-color: #ccc;" />
             <h4>10 Most Common Adverse Reactions</h4>
 
@@ -211,9 +230,25 @@
             <a class="btn btn-default btn-sm" href="mailto:info@meliosystems.com?Subject=FDA%20Drug%20Suggestion&amp;body={{maildrugCURL}}">Send Suggestion Link By Mail</a>
             <br/><br/>
           </div>
+
+          <div style="text-align: center;" ng-if="countDrugData.length == 0 && totalDrugData.length == 0">
+            <h1>{{totalDrugData |number:0}}</h1>
+            <h2>Adverse Reactions <span ng-if="drugName.length != 0">for {{drugName}}</span> </h2>
+            <hr style="border-width:2px;border-color: #ccc;" />
+            <h4>No Drug's Found</h4>
+            <h5>Enter a Different Search Term</h5>
+          </div>
+
         </div>
+
       </div>
     </div>
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted"><strong>Disclaimer :</strong> {{disclaimer}}</p>
+        <p class="text-muted"><strong>Date as on :</strong> {{last_updated}}</p>
+      </div>
+    </footer>
     <script>
       $('.chevron_toggleable').on('click', function() {
         $('.toggle_arrow').toggleClass('glyphicon-chevron-down glyphicon-chevron-up');
