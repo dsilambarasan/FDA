@@ -2,51 +2,45 @@
  * @file
  * Custom style overrides.
  */
-
 body {
   padding-top: 10px;
 }
- body {
-        padding-top: 10px;
-      }
- .custNavBar{
+.custNavBar{
   float:left;
   margin-left:10px;
- }
- .custTablePad{
+}
+.custTablePad{
   text-align: left;
   padding: 5px;
- }
- 
+}
+
 .customDiv{
   position: relative;
-  margin: 3px 5px 3px 0;
-  padding: 3px 20px 3px 5px;
-  border: 1px solid #aaa;
+  margin: 3px 0px 3px 0;
+  padding: 3px 3px 3px 3px;
+  border: 1px solid #ccc;
   max-width: 100%;
   border-radius: 3px;
-  background-color: #eeeeee;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(20%, #f4f4f4), color-stop(50%, #f0f0f0), color-stop(52%, #e8e8e8), color-stop(100%, #eeeeee));
-  background-image: -webkit-linear-gradient(#f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
-  background-image: -moz-linear-gradient(#f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
-  background-image: -o-linear-gradient(#f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
-  background-image: linear-gradient(#f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
-  background-size: 100% 19px;
-  background-repeat: repeat-x;
-  background-clip: padding-box;
-  box-shadow: 0 0 2px white inset, 0 1px 0 rgba(0, 0, 0, 0.05);
+  background-color: #F8F8F8;
   color: #333;
-  line-height: 13px;
+  line-height:25px;
   cursor: default;
 }
 
 .close {
   float: right;
-  font-size: 21px;
+  font-size: 35px;
   font-weight: 700;
-  line-height: 0.5;
+  margin-right:5px;
+  line-height: 25px;
   color: #000;
   text-shadow: 0 1px 0 #fff;
-  filter: alpha(opacity=20);
-  opacity: .2;
+  filter: alpha(opacity=30);
+  opacity: .3;
+}
+.well{
+  background-color:#F8F8F8;
+}
+.btn-default:hover, .btn-default:active, .btn-default:before {
+  background-color:#F8F8F8!important;
 }
