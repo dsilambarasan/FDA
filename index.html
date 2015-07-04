@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="fdaapp" >
+<html lang="en" ng-app="fdaapp">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,13 +7,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Drug Report</title>
-
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="http://ec2-54-151-157-164.ap-southeast-1.compute.amazonaws.com/sites/all/themes/bootstrap/js/c3/c3.css" />
     <link rel="stylesheet" href="http://css-spinners.com/css/spinner/spinner.css" type="text/css">
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="css/drug-report.css">
-    <link rel="stylesheet" type="text/css" href="http://ec2-54-151-157-164.ap-southeast-1.compute.amazonaws.com/sites/all/themes/bootstrap/js/c3/c3.css" />
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -22,35 +21,19 @@
     <script type="text/javascript" src="http://ec2-54-151-157-164.ap-southeast-1.compute.amazonaws.com/sites/all/themes/bootstrap/js/c3/bower_components/d3/d3.js"></script>
     <script type="text/javascript" src="http://ec2-54-151-157-164.ap-southeast-1.compute.amazonaws.com/sites/all/themes/bootstrap/js/c3/bower_components/c3/c3.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.0/ui-bootstrap-tpls.min.js"></script>
-    <script type="text/javascript" src="script/drug-report.js"></script>
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script type="text/javascript" src="script/drug-report.js"></script>
     <style>
       .navbar-header {
-        float: left;padding: 15px;text-align: center;width: 100%;
+        float: left;
+        padding: 15px;
+        text-align: center;
+        width: 100%;
       }
       .navbar-brand {
         float:none;
       }
     </style>
-    <script>
-      $(function() {
-        $("#slider-range").slider({
-          range: true,
-          min: 0,
-          max: 99,
-          values: [ 0, 99 ],
-          slide: function(event, ui) {
-            $("#amount").val(ui.values[ 0 ] + "-" + ui.values[ 1 ]);
-            $("#min").val(ui.values[ 0 ]);
-            $("#max").val(ui.values[ 1 ]);
-          }
-        });
-        $("#amount").val($("#slider-range").slider("values", 0) +'-'+ $("#slider-range").slider("values", 1));
-
-        $("#min").val($("#slider-range").slider("values", 0));
-        $("#max").val($("#slider-range").slider("values", 1));
-      });
-    </script>
   </head>
   <body ng-controller="fdaCtrl">
     <div class="container">
@@ -146,23 +129,37 @@
                   <label>
                     <input ng-model="chosen.isAgeRange" ng-change="ageRangeCheck()" type="checkbox">
                     Age Range
-                    <br/>
-                    <div class="form-group">
-                      <br/>
-                      <div class="col-sm-12">
-                        <div id="slider-range"></div>
-                        <input type="hidden" id="amount" readonly>
-                      </div>
-                      <br/>
-                      <div class="col-xs-3">
-                        <input type="text" class="form-control" id="min" ng-change="ageRangeCheck()" ng-model="fromage" placeholder="Min">
-                      </div>
-                      <div class="col-xs-3">
-                        <input type="text" class="form-control" id="max" ng-change="ageRangeCheck()" ng-model="toage" placeholder="Max">
-                      </div>
-                    </div>
                   </label>
+                  <div class="form-group">
+                    <div class="col-sm-12">
+                      <div style="display: none;" id="slider-range"></div>
+                      <input type="hidden" id="amount" readonly>
+                    </div>
+                    <br/>
+                    <div class="col-xs-6 col-sm-3">
+                      <input type="number" class="form-control" id="min" ng-change="ageRangeCheck()" ng-model="fromage" placeholder="Min">
+                    </div>
+                    <div class="col-xs-6 col-sm-3">
+                      <input type="number" class="form-control" id="max" ng-change="ageRangeCheck()" ng-model="toage" placeholder="Max">
+                    </div>
+                  </div>
                 </div>
+                <br/>
+                <div class="checkbox">
+                  <label>
+                    <input ng-model="chosen.isYear" ng-change="yearCheck()" type="checkbox">
+                    Year Range 
+                  </label><br/>
+                  <div class="form-group">
+                    <div class="col-xs-6 col-sm-3">
+                      <input type="number" class="form-control" ng-change="yearCheck()" ng-model="fromyear" placeholder="From Year">
+                    </div>
+                    <div class="col-xs-6 col-sm-3">
+                      <input type="number" class="form-control" ng-change="yearCheck()" ng-model="toyear" placeholder="To Year">
+                    </div>
+                  </div>
+                </div><br/>
+
                 <!-- <div class="form-group">
                   <button type="submit" ng-disabled="drugName==null ||  drugName.length==0"  ng-click="makeDrugURL()" class="btn btn-default">I'm Done!</button>
                 </div> -->
@@ -185,33 +182,42 @@
             <span ng-show="key=='isAgeRange'">Age Range : 
               <span>{{fromage}} - {{toage}}</span>
               <span class="close" ng-click="changeKey(key)">&times;</span> 
+            </span>
+            <span ng-show="key=='isYear'">Year Range : 
+              <span>{{fromyear}} - {{toyear}}</span>
+              <span class="close" ng-click="changeKey(key)">&times;</span> 
             </span> 
           </div>
-          <div ng-show="myloader">
-            <div class="spinner-loader">
-              Loading…
-            </div>
-          </div>
+
           <div style="text-align: center;" ng-if="countDrugData!=null && totalDrugData!=null">
             <h1>{{totalDrugData |number:0}}</h1>
             <h2>Adverse Reactions</h2>
-            <hr style="border-width:2px;border-color: #000000;" />
+            <hr style="border-width:2px;border-color: #ccc;" />
             <h4>10 Most Common Adverse Reactions</h4>
+
+            <div ng-show="myloader">
+              <div class="spinner-loader">
+                Loading…
+              </div>
+            </div>
+
             <div id="chart"></div>
-            <table border="0" style=" margin: 0 auto;">
+            <table ng-hide="true" border="0" style=" margin: 0 auto;">
               <tr data-ng-repeat="drug in countDrugData | limitTo:10">
                 <td class="custTablePad">{{drug.count}}</td>
                 <td class="custTablePad">{{drug.term}}</td>
               </tr>
-            </table>
+            </table><br/>
+            <a class="btn btn-default btn-sm" href="mailto:info@meliosystems.com?Subject=FDA%20Drug%20Suggestion&amp;body={{maildrugCURL}}">Send Suggestion Link By Mail</a>
+            <br/><br/>
           </div>
         </div>
       </div>
     </div>
-    <script type="text/javascript">
+    <script>
       $('.chevron_toggleable').on('click', function() {
         $('.toggle_arrow').toggleClass('glyphicon-chevron-down glyphicon-chevron-up');
-      });
+      }); 	
     </script>
   </body>
 </html>

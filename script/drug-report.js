@@ -3,21 +3,21 @@
  * Drug report angular JS code.
  */
 $(function() {
-  $( "#slider-range" ).slider({
+  $("#slider-range").slider({
     range: true,
     min: 1,
     max: 99,
     values: [ 0, 99 ],
-    slide: function( event, ui ) {
-      $( "#amount" ).val(ui.values[ 0 ] + "-" + ui.values[ 1 ] );
-      $( "#min" ).val(ui.values[ 0 ]);
-      $( "#max" ).val(ui.values[ 1 ]);
+    slide: function(event, ui) {
+      $("#amount").val(ui.values[ 0 ] + "-" + ui.values[ 1 ]);
+      $("#min").val(ui.values[ 0 ]);
+      $("#max").val(ui.values[ 1 ]);
     }
   });
-  $( "#amount" ).val( $( "#slider-range" ).slider( "values", 0 ) +'-'+ $( "#slider-range" ).slider( "values", 1 ) );
+  $("#amount").val($("#slider-range").slider("values", 0) +'-'+ $("#slider-range").slider("values", 1));
 
-  $( "#min" ).val( $( "#slider-range" ).slider( "values", 0 ));
-  $( "#max" ).val( $( "#slider-range" ).slider( "values", 1 ));
+  $("#min").val($("#slider-range").slider("values", 0));
+  $("#max").val($("#slider-range").slider("values", 1));
 });
 
 var app = angular.module('fdaapp', ['ui.bootstrap']);
@@ -252,7 +252,6 @@ angular.module('fdaapp').directive('ngEnter', function() {
             'event': event
           });
         });
-
         event.preventDefault();
       }
     });
