@@ -23,17 +23,6 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.0/ui-bootstrap-tpls.min.js"></script>
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script type="text/javascript" src="script/drug-report.js"></script>
-    <style>
-      .navbar-header {
-        float: left;
-        padding: 15px;
-        text-align: center;
-        width: 100%;
-      }
-      .navbar-brand {
-        float:none;
-      }
-    </style>
   </head>
   <body ng-controller="fdaCtrl">
     <div class="container">
@@ -63,12 +52,12 @@
             </button>
           </span>
         </div>
-        <div class="">
+        <div class="col-lg-4 col-xs-12">
           <br/>
           <button type="button" class="btn btn-default chevron_toggleable" style="width:100%;" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
             Filter  <span class="toggle_arrow glyphicon glyphicon-chevron-down"></span>
           </button><br/>
-          <div class="collapse" id="collapseExample">
+          <div class="collapse in" id="collapseExample">
             <div class="well" style="text-align:left;">
               <div>
                 <div class="checkbox">
@@ -128,19 +117,21 @@
                 <div class="checkbox">
                   <label>
                     <input ng-model="chosen.isAgeRange" ng-change="ageRangeCheck()" type="checkbox">
-                    Age Range
+                    Age Group
                   </label>
-                  <div class="form-group">
+                  <div class="form-group"><br/>
                     <div class="col-sm-12">
                       <div style="display: none;" id="slider-range"></div>
                       <input type="hidden" id="amount" readonly>
                     </div>
-                    <br/>
-                    <div class="col-xs-6 col-sm-3">
-                      <input type="number" class="form-control" id="min" ng-change="ageRangeCheck()" ng-model="fromage" placeholder="Min">
+                    <div class="col-xs-5 col-sm-4">
+                      <input type="number" class="form-control" id="min" ng-change="ageRangeCheck()" ng-model="fromage" min="1" max="100" placeholder="Min">
                     </div>
-                    <div class="col-xs-6 col-sm-3">
-                      <input type="number" class="form-control" id="max" ng-change="ageRangeCheck()" ng-model="toage" placeholder="Max">
+                    <div class="col-xs-1 col-sm-1">
+                      to
+                    </div>
+                    <div class="col-xs-5 col-sm-4">
+                      <input type="number" class="form-control" id="max" ng-change="ageRangeCheck()" ng-model="toage" min="1" max="100" placeholder="Max">
                     </div>
                   </div>
                 </div>
@@ -148,50 +139,54 @@
                 <div class="checkbox">
                   <label>
                     <input ng-model="chosen.isYear" ng-change="yearCheck()" type="checkbox">
-                    Year Range 
-                  </label><br/>
-                  <div class="form-group">
-                    <div class="col-xs-6 col-sm-3">
-                      <input type="number" class="form-control" ng-change="yearCheck()" ng-model="fromyear" placeholder="From Year">
+                    Report Received on 
+                  </label>
+                  <div class="form-group"><br/>
+                    <div class="col-xs-5 col-sm-4">
+                      <input type="number" class="form-control" ng-change="yearCheck()" ng-model="fromyear" min="1970" max="2015" placeholder="From Year">
                     </div>
-                    <div class="col-xs-6 col-sm-3">
-                      <input type="number" class="form-control" ng-change="yearCheck()" ng-model="toyear" placeholder="To Year">
+                    <div class="col-xs-1 col-sm-1">
+                      to
+                    </div>
+                    <div class="col-xs-5 col-sm-4">
+                      <input type="number" class="form-control" ng-change="yearCheck()" ng-model="toyear" min="1970" max="2015" placeholder="To Year">
                     </div>
                   </div>
                 </div><br/>
 
-                <!-- <div class="form-group">
-                  <button type="submit" ng-disabled="drugName==null ||  drugName.length==0"  ng-click="makeDrugURL()" class="btn btn-default">I'm Done!</button>
-                </div> -->
               </div>
             </div>
           </div>
+
+        </div>
+        <div class="col-lg-8 col-xs-12">
+          <br/>
           <div class="customDiv text-center" ng-repeat="(key,value) in chosen" ng-show="value">
-            <span ng-show="key=='isSerious'">Serious : 
+            <span ng-show="key=='isSerious'">Serious :
               <span ng-bind="seriousness==1 ? 'Serious' : 'Non-Serious'"></span>
-              <span class="close" ng-click="changeKey(key)">&times;</span> 
+              <span class="close" ng-click="changeFilterOptions(key)">&times;</span>
             </span>
-            <span ng-show="key=='isReport'">Method of Reporting : 
+            <span ng-show="key=='isReport'">Method of Reporting :
               <span ng-bind="reporting==1 ? 'Via Public' : 'Via Manufacturer'"></span>
-              <span class="close" ng-click="changeKey(key)">&times;</span> 
+              <span class="close" ng-click="changeFilterOptions(key)">&times;</span>
             </span> 
-            <span ng-show="key=='isGender'">Gender : 
+            <span ng-show="key=='isGender'">Gender :
               <span ng-bind="gender==1 ? 'Male' : 'Female'"></span>
-              <span class="close" ng-click="changeKey(key)">&times;</span> 
+              <span class="close" ng-click="changeFilterOptions(key)">&times;</span>
             </span> 
-            <span ng-show="key=='isAgeRange'">Age Range : 
+            <span ng-show="key=='isAgeRange'">Age Group :
               <span>{{fromage}} - {{toage}}</span>
-              <span class="close" ng-click="changeKey(key)">&times;</span> 
+              <span class="close" ng-click="changeFilterOptions(key)">&times;</span>
             </span>
-            <span ng-show="key=='isYear'">Year Range : 
+            <span ng-show="key=='isYear'">Report Received On :
               <span>{{fromyear}} - {{toyear}}</span>
-              <span class="close" ng-click="changeKey(key)">&times;</span> 
+              <span class="close" ng-click="changeFilterOptions(key)">&times;</span>
             </span> 
           </div>
 
-          <div style="text-align: center;" ng-if="countDrugData!=null && totalDrugData!=null">
+          <div style="text-align: center;" ng-if="countDrugData.length != 0 && totalDrugData.length != 0">
             <h1>{{totalDrugData |number:0}}</h1>
-            <h2>Adverse Reactions</h2>
+            <h2>Adverse Reactions <span ng-if="searchedDrugName.length != 0">for {{searchedDrugName}}</span> </h2>
             <hr style="border-width:2px;border-color: #ccc;" />
             <h4>10 Most Common Adverse Reactions</h4>
 
@@ -211,13 +206,29 @@
             <a class="btn btn-default btn-sm" href="mailto:info@meliosystems.com?Subject=FDA%20Drug%20Suggestion&amp;body={{maildrugCURL}}">Send Suggestion Link By Mail</a>
             <br/><br/>
           </div>
+
+          <div style="text-align: center;" ng-if="countDrugData.length == 0 && totalDrugData.length == 0">
+            <h1>{{totalDrugData |number:0}}</h1>
+            <h2>Adverse Reactions <span ng-if="searchedDrugName.length != 0">for {{searchedDrugName}}</span> </h2>
+            <hr style="border-width:2px;border-color: #ccc;" />
+            <h4>No Drug's Found</h4>
+            <h5>Enter a Different Search Term</h5>
+          </div>
+
         </div>
+
       </div>
     </div>
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted"><strong>Disclaimer :</strong> {{disclaimer}}</p>
+        <p class="text-muted"><strong>Last updated date :</strong> {{last_updated}}</p>
+      </div>
+    </footer>
     <script>
       $('.chevron_toggleable').on('click', function() {
         $('.toggle_arrow').toggleClass('glyphicon-chevron-down glyphicon-chevron-up');
-      }); 	
+      });
     </script>
   </body>
 </html>

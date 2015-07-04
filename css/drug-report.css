@@ -1,14 +1,16 @@
 /**
  * @file
- * Custom style overrides.
+ * Drug Report css file.
  */
 body {
   padding-top: 10px;
 }
+
 .custNavBar{
   float:left;
   margin-left:10px;
 }
+
 .custTablePad{
   text-align: left;
   padding: 5px;
@@ -16,8 +18,8 @@ body {
 
 .customDiv{
   position: relative;
-  margin: 3px 0px 3px 0;
-  padding: 3px 3px 3px 3px;
+  margin: 0px 0px 3px 0;
+  padding: 4px 3px 3px 3px;
   border: 1px solid #ccc;
   max-width: 100%;
   border-radius: 3px;
@@ -38,9 +40,38 @@ body {
   filter: alpha(opacity=30);
   opacity: .3;
 }
+
 .well{
   background-color:#F8F8F8;
 }
+
 .btn-default:hover, .btn-default:active, .btn-default:before {
   background-color:#F8F8F8!important;
 }
+
+.navbar-header {
+  float: left;padding: 15px;
+  text-align: center;
+  width: 100%;
+}
+
+.navbar-brand {
+  float:none;
+}
+
+.navbar-header{
+  background-color:rgb(31, 119, 180)!important;
+}
+
+.navbar-brand{
+  color:#fff!important;
+}
+
+.footer{
+  background-color:#F8F8F8!important;
+}
+
+@media all and (min-width: 787px) {
+  .navbar-brand{font-size:30px!important;}
+}
+
