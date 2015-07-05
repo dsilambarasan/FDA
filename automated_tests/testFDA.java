@@ -154,17 +154,11 @@ public class testFDA {
 
     //driver.quit();
     Thread.sleep(5000);
-
-
-
   }
-
 
   private static void assertThat(long length, Object object) {
     // TODO Auto-generated method stub
-
   }
-
 
   private static Object is(Object greaterThan) {
     // TODO Auto-generated method stub
