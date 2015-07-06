@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Automation Test">
+<test name="Smoke Test Cases">
+<classes>
+
+<class name="browser.medicineOne"/>
+
+</classes>
+
+
+</test>
+
+
+</suite>
