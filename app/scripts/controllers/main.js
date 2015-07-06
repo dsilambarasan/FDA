@@ -8,6 +8,7 @@
  * Controller of the reportApp
  */
 angular.module('reportApp').controller('MainCtrl', function ($scope, drugUtilities, $timeout) {
+
   $scope.chosen = {
     "isSerious": false,
     "isReport": false,
@@ -28,7 +29,7 @@ angular.module('reportApp').controller('MainCtrl', function ($scope, drugUtiliti
   $scope.myVar       = 1;
   $scope.searchedDrugName = '';
 
-  $scope.maildrugCURL = 'http://54.254.212.175/FDA/index.html';
+  $scope.maildrugCURL = 'http://ec2-52-0-103-219.compute-1.amazonaws.com/index.html';
 
   /* To Get Search Parameters from URL */
   function getParameterByName(name) {
@@ -88,7 +89,6 @@ angular.module('reportApp').controller('MainCtrl', function ($scope, drugUtiliti
       $scope.totalDrugDetails(drugTURL);
       $scope.countDrugDetails(drugCURL);
     }
-
   });
 
   /* To modify your Filter Options */
@@ -111,16 +111,16 @@ angular.module('reportApp').controller('MainCtrl', function ($scope, drugUtiliti
 
     searchparam = 1;
     drugTURL += '&search=(patient.drug.medicinalproduct:"' + $scope.drugName +
-      '"+OR+patient.drug.openfda.substance_name:"' + $scope.drugName +
-      '"+OR+patient.drug.openfda.product_type:"' + $scope.drugName +
-      '"+OR+patient.drug.openfda.manufacturer_name:"' + $scope.drugName +
-      '"+OR+patient.drug.openfda.brand_name:"' + $scope.drugName +
-      '"+OR+patient.drug.openfda.generic_name:"' + $scope.drugName +
-      '"+OR+patient.drug.openfda.application_number:"' + $scope.drugName + '")';
+      '")+(patient.drug.openfda.substance_name:"' + $scope.drugName +
+      '")+(patient.drug.openfda.product_type:"' + $scope.drugName +
+      '")+(patient.drug.openfda.manufacturer_name:"' + $scope.drugName +
+      '")+(patient.drug.openfda.brand_name:"' + $scope.drugName +
+      '")+(patient.drug.openfda.generic_name:"' + $scope.drugName +
+      '")+(patient.drug.openfda.application_number:"' + $scope.drugName + '")';
 
     var drugCURL = drugTURL;
 
-    $scope.maildrugCURL = 'http://54.254.212.175/FDA/index.html?drugName='+ $scope.drugName;
+    $scope.maildrugCURL = 'http://ec2-52-0-103-219.compute-1.amazonaws.com?drugName='+ $scope.drugName;
 
     if($scope.chosen.isSerious) {
       if (searchparam === 0) {
@@ -212,6 +212,7 @@ angular.module('reportApp').controller('MainCtrl', function ($scope, drugUtiliti
     drugTURL += '';
     drugCURL += '&count=patient.reaction.reactionmeddrapt.exact';
 
+    $scope.drugFeedURL		=	drugTURL;
     $scope.totalDrugDetails(drugTURL);
     $scope.countDrugDetails(drugCURL);
 
