@@ -111,12 +111,12 @@ angular.module('reportApp').controller('MainCtrl', function ($scope, drugUtiliti
 
     searchparam = 1;
     drugTURL += '&search=(patient.drug.medicinalproduct:"' + $scope.drugName +
-      '")+(patient.drug.openfda.substance_name:"' + $scope.drugName +
-      '")+(patient.drug.openfda.product_type:"' + $scope.drugName +
-      '")+(patient.drug.openfda.manufacturer_name:"' + $scope.drugName +
-      '")+(patient.drug.openfda.brand_name:"' + $scope.drugName +
-      '")+(patient.drug.openfda.generic_name:"' + $scope.drugName +
-      '")+(patient.drug.openfda.application_number:"' + $scope.drugName + '")';
+      '"+patient.drug.openfda.substance_name:"' + $scope.drugName +
+      '"+patient.drug.openfda.product_type:"' + $scope.drugName +
+      '"+patient.drug.openfda.manufacturer_name:"' + $scope.drugName +
+      '"+patient.drug.openfda.brand_name:"' + $scope.drugName +
+      '"+patient.drug.openfda.generic_name:"' + $scope.drugName +
+      '"+patient.drug.openfda.application_number:"' + $scope.drugName + '")';
 
     var drugCURL = drugTURL;
 

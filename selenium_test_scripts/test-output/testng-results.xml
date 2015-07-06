@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="2" passed="2">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Automation Test" duration-ms="70661" started-at="2015-07-06T15:11:44Z" finished-at="2015-07-06T15:12:55Z">
+    <groups>
+    </groups>
+    <test name="Smoke Test Cases" duration-ms="70661" started-at="2015-07-06T15:11:44Z" finished-at="2015-07-06T15:12:55Z">
+      <class name="browser.medicineOne">
+        <test-method status="PASS" signature="OpeningBrowser()[pri:0, instance:browser.medicineOne@560088f]" name="OpeningBrowser" is-config="true" duration-ms="6219" started-at="2015-07-06T11:11:44Z" finished-at="2015-07-06T11:11:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- OpeningBrowser -->
+        <test-method status="PASS" signature="amedicineOne()[pri:0, instance:browser.medicineOne@560088f]" name="amedicineOne" duration-ms="31989" started-at="2015-07-06T11:11:51Z" finished-at="2015-07-06T11:12:23Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- amedicineOne -->
+        <test-method status="PASS" signature="bmedicineTwo()[pri:0, instance:browser.medicineOne@560088f]" name="bmedicineTwo" duration-ms="32428" started-at="2015-07-06T11:12:23Z" finished-at="2015-07-06T11:12:55Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- bmedicineTwo -->
+      </class> <!-- browser.medicineOne -->
+    </test> <!-- Smoke Test Cases -->
+  </suite> <!-- Automation Test -->
+</testng-results>

@@ -25,7 +25,7 @@ module.exports = function(config) {
       'bower_components/angular-animate/angular-animate.min.js',
       'app/scripts/*.js',
       'app/scripts/controllers/*.js',
-      'test/unit/*.js',
+      'test/spec/controllers/*.js',
     ],
 
     // list of files / patterns to exclude
