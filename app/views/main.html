@@ -1,6 +1,6 @@
 <div class="">
   <div class="input-group">
-    <input type="text" class="form-control" ng-model="$parent.drugName" placeholder="Enter a Drug (Brand Name or Generic)" ng-enter>
+    <input type="text" class="form-control" ng-model="$parent.drugName" placeholder="Enter a Drug (Brand or Generic or Substance Name or Application number or Manufacturer or Product Type)" ng-enter>
     <span class="input-group-btn">
       <button type="button" class="btn btn-default" aria-label="Left Align" ng-disabled="drugName==null || drugName.length==0" ng-click="makeDrugURL()">
         <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
@@ -161,8 +161,7 @@
       <a class="btn btn-default btn-sm" href="mailto:info@meliosystems.com?Subject=FDA%20Drug%20Suggestion&amp;body={{maildrugCURL}}">Email this report</a>
       <br/><br/>
     </div>
-
-    <div style="text-align: center;" ng-if="countDrugData.length == 0 && totalDrugData.length == 0">
+    <div style="text-align: center;" ng-if="myloader == false && countDrugData.length == 0 && totalDrugData.length == 0">
       <h1>{{totalDrugData |number:0}}</h1>
       <h2>Adverse Reactions <span ng-if="searchedDrugName.length != 0">for {{searchedDrugName}}</span> </h2>
       <hr style="border-width:2px;border-color: #ccc;" />
