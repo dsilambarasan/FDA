@@ -16,6 +16,7 @@ CMD cd /home/project && \
     cd /home/project/DrugReport && \
     npm install && \
     bower install --allow-root && \
+    grunt test && \
     grunt serve
 
 # set the working dir
