@@ -109,15 +109,16 @@ angular.module('reportApp').controller('MainCtrl', function ($scope, drugUtiliti
     var searchparam = 0;
     var drugTURL = 'https://api.fda.gov/drug/event.json?api_key=pw60LprRW1vp9WXwFtosc6lT7Tm50AvH35rnIbOK';
 
-    searchparam = 1;
-    drugTURL += '&search=(patient.drug.medicinalproduct:"' + $scope.drugName +
-      '"+patient.drug.openfda.substance_name:"' + $scope.drugName +
-      '"+patient.drug.openfda.product_type:"' + $scope.drugName +
-      '"+patient.drug.openfda.manufacturer_name:"' + $scope.drugName +
-      '"+patient.drug.openfda.brand_name:"' + $scope.drugName +
-      '"+patient.drug.openfda.generic_name:"' + $scope.drugName +
-      '"+patient.drug.openfda.application_number:"' + $scope.drugName + '")';
-
+    if ($scope.drugName != '') {
+      searchparam = 1;
+      drugTURL += '&search=(patient.drug.medicinalproduct:"' + $scope.drugName +
+        '"+patient.drug.openfda.substance_name:"' + $scope.drugName +
+        '"+patient.drug.openfda.product_type:"' + $scope.drugName +
+        '"+patient.drug.openfda.manufacturer_name:"' + $scope.drugName +
+        '"+patient.drug.openfda.brand_name:"' + $scope.drugName +
+        '"+patient.drug.openfda.generic_name:"' + $scope.drugName +
+        '"+patient.drug.openfda.application_number:"' + $scope.drugName + '")';
+    }
     var drugCURL = drugTURL;
 
     $scope.maildrugCURL = 'http://ec2-52-0-103-219.compute-1.amazonaws.com?drugName='+ $scope.drugName;
@@ -147,7 +148,6 @@ angular.module('reportApp').controller('MainCtrl', function ($scope, drugUtiliti
         drugTURL += '+AND+';
         drugCURL += '+AND+';
       }
-      console.log($scope.reporting);
       /* Reported directly by public */
       if($scope.reporting == 1){
         drugTURL += '_missing_:companynumb';
@@ -280,42 +280,32 @@ angular.module('reportApp').controller('MainCtrl', function ($scope, drugUtiliti
           }
         }
       });
-    }, 1000);
+    }, 500);
   },
 
   /* Check Seriousness Label */
   $scope.seriousCheck    =   function() {
-    if ($scope.chosen.isSerious) {
-      $scope.makeDrugURL();
-    }
+    $scope.makeDrugURL();
   },
 
   /* Check Method of Reporting Label */
   $scope.reportCheck    =   function() {
-    if ($scope.chosen.isReport) {
-      $scope.makeDrugURL();
-    }
+    $scope.makeDrugURL();
   },
 
   /* Check Gender Label */
   $scope.genderCheck    =   function() {
-    if ($scope.chosen.isGender) {
-      $scope.makeDrugURL();
-    }
+    $scope.makeDrugURL();
   },
 
   /* Check Age Group Label */
   $scope.ageRangeCheck  =   function() {
-    if ($scope.chosen.isAgeRange) {
-      $scope.makeDrugURL();
-    }
+    $scope.makeDrugURL();
   },
 
   /* Check Report Received On Label */
   $scope.yearCheck = function() {
-    if ($scope.chosen.isYear) {
-      $scope.makeDrugURL();
-    }
+    $scope.makeDrugURL();
   };
 
 });
