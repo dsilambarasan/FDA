@@ -460,4 +460,7 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+
+  // load the Grunt task
+  grunt.loadNpmTasks('grunt-karma');
 };
