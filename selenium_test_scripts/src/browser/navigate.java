@@ -18,7 +18,7 @@ public class navigate {
   {
     Properties prop=new Properties();	
 
-    FileInputStream fis=new FileInputStream("//Users//waqaskhan//Documents//FDA//fdaProject//src//browser//datadriven.properties");
+    FileInputStream fis=new FileInputStream("//home//jenkins//DrugReport//selenium_test_scripts//src//browser//datadriven.properties");
     prop.load(fis);
     if (prop.getProperty("browser").equals("firefox"))
     {

@@ -9,7 +9,7 @@
 
 <property environment="env"/>
 
-<property name="ws.home" value="/home/jenkins/DrugReport/selenium-test-scripts"/>
+<property name="ws.home" value="/home/jenkins/DrugReport/selenium_test_scripts"/>
 
 <property name="ws.jars" value="${ws.home}/jars"/>
 
@@ -105,7 +105,7 @@
 
     srcdir="${test.src}"
 
-    target="1.5"
+    target="1.8"
 
     classpath="${test.classpath}"
 
