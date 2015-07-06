@@ -7,4 +7,4 @@ To re-create this application in other machine using the docker container, run t
 `docker run -it --rm --name drug-reporting-app drug-report-app -p 80:9000`
 
 # Demo App URL
-Access our application from this URL: https://github.com/vinothgovindarajan/DrugReport
+Access our application from this URL: http://ec2-52-0-103-219.compute-1.amazonaws.com/
