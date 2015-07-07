@@ -37,7 +37,7 @@ We used Jenkins services for continuous integration and testing. These automated
 
 We used NPM for node.js package management and Bower for client side package management(AngularJS, D3, C3, jQuery)
 
-We used New Relic Application Performance Monitoring (APM) for continuous monitoring and to troubleshot performance problems in the application.
+We used New Relic Browser for continuous monitoring and to troubleshot performance problems in the application (refer: https://github.com/vinothgovindarajan/DrugReport/tree/master/evidence_docs/cm_new_relic)
 
 We used Docker services to deploy our prototype. We pushed our Docker image into the DockerHub public repository, here is the URL of our Docker image: 
 
