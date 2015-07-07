@@ -56,6 +56,8 @@ We identified a technical architect and made him responsible to manage user requ
 
 We assembled a multidisciplinary and talented team with experience in creating modern digital services. Our team included an experienced technical architect, front end web developer, backend web developer and DevOps engineer. We made sure that our team is experienced in developing similar solutions using agile delivery methodology along with development and operations (DevOps) techniques such as continuous integration and continuous deployment.
 
+We used JIRA to create product backlog with user stories, manage sprints, and issues tracking. [refer to these screenshots] (https://github.com/vinothgovindarajan/DrugReport/tree/master/evidence_docs/agile_jira)
+
 Using Personas and design thinking techniques, we created initial set of wireframes. [refer to these screenshots] (https://github.com/vinothgovindarajan/DrugReport/tree/master/evidence_docs/ux_wireframes)
 
 We used Jasmine framework for unit testing using karma adapter. Our unit test covered each and every filter options for search and other features (email link, API feed query construction). We used Selenium to automate the integration and functionality test. [refer to these screenshots] (https://github.com/vinothgovindarajan/DrugReport/tree/master/evidence_docs/automated_test_selenium)
@@ -65,8 +67,6 @@ We used Jenkins services for continuous integration and testing. These automated
 We used New Relic Browser for continuous monitoring and to troubleshoot performance problems in the application [refer to these screenshots] (https://github.com/vinothgovindarajan/DrugReport/tree/master/evidence_docs/cm_new_relic)
 
 We used Docker services to deploy our prototype. We pushed our Docker image into the DockerHub public repository [refer to our docker image in docker hub](https://registry.hub.docker.com/u/vinothgovindarajan/drug-report-app/)
-
-We used JIRA to create product backlog with user stories, manage sprints, and issues tracking. [refer to these screenshots] (https://github.com/vinothgovindarajan/DrugReport/tree/master/evidence_docs/agile_jira)
 
 
 
