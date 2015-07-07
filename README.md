@@ -18,12 +18,20 @@ docker run -it --rm --name drug-reporting-app drug-report-app -p 80:9000
 # Technology Stack
 ## Core Stack
 * NodeJS
-* NPM
+* NPM (for nodeJS package management)
 * AngularJS
-* Bower
+* Bower (for client side package management)
+* Grunt (task runner)
+* C3 (for chart rendering)
+
+## Web Technologies
+* HTML5
+* CSS3
+* JavaScript
+* Bootstrap (theme and web components)
 
 ## Unit Test Framework
-* Jasmine
+* Jasmine (using karma adapter)
 
 ## Test Automation
 * Selenium 
@@ -50,21 +58,15 @@ We assembled a multidisciplinary and talented team with experience in creating m
 
 Using Personas and design thinking techniques, we created initial set of wireframes. [refer to these screenshots] (https://github.com/vinothgovindarajan/DrugReport/tree/master/evidence_docs/ux_wireframes)
 
-We used the following open source technologies: JavaScript, AngularJS, Bootstrap, HTML5, CSS3, Node.js, C3, Docker (to deploy in a container), Jenkins (continuous integration), Selenium (integration test) and Jasmine (unit test), Grunt (task runner), Bower (configuration management). We deployed our prototype on AWS.
-
 We used Jasmine framework for unit testing using karma adapter. Our unit test covered each and every filter options for search and other features (email link, API feed query construction). We used Selenium to automate the integration and functionality test. [refer to these screenshots] (https://github.com/vinothgovindarajan/DrugReport/tree/master/evidence_docs/automated_test_selenium)
 
 We used Jenkins services for continuous integration and testing. These automated tests are written to provide consistent and reliable protection against unintentional regressions and enable us to release frequent updates to our prototype.  With our robust development methodology, continuous integration is used to maintain and automatically monitor code quality and code convergence metrics and ultimately keeping the maintenance costs low. [refer to these screenshots] (https://github.com/vinothgovindarajan/DrugReport/tree/master/evidence_docs/ci_jenkins)
 
-We used NPM for node.js package management and Bower for client side package management (AngularJS, C3, jQuery)
-
 We used New Relic Browser for continuous monitoring and to troubleshoot performance problems in the application [refer to these screenshots] (https://github.com/vinothgovindarajan/DrugReport/tree/master/evidence_docs/cm_new_relic)
 
-We used Docker services to deploy our prototype. We pushed our Docker image into the DockerHub public repository, here is the URL of our Docker image: 
+We used Docker services to deploy our prototype. We pushed our Docker image into the DockerHub public repository [refer to our docker image in docker hub](https://registry.hub.docker.com/u/vinothgovindarajan/drug-report-app/)
 
-https://registry.hub.docker.com/u/vinothgovindarajan/drug-report-app/
-
-We used JIRA to document user stories, manage sprints, backlogs and bug reporting. [refer to these screenshots] (https://github.com/vinothgovindarajan/DrugReport/tree/master/evidence_docs/agile_jira)
+We used JIRA to create product backlog with user stories, manage sprints, and issues tracking. [refer to these screenshots] (https://github.com/vinothgovindarajan/DrugReport/tree/master/evidence_docs/agile_jira)
 
 
 
