@@ -5,7 +5,7 @@ Access our application from this URL: http://ec2-52-0-103-219.compute-1.amazonaw
 DrugReport allows a user to quickly search for any drug related adverse events using faceted search criteria. DrugReport is powered by openFDA (https://open.fda.gov) dataset and Application Programming Interface (API). The search result is displayed in a responsive layout so users can access DrugReport using mobile devices as well.
 
 # Search
-The search criteria include seriousness of the adverse event, gender, method of reporting, date of notification and age group. The search result page displays a pie chart along with the list of most common adverse reactions. The user can also share search results via an email.
+The search criteria include Drug Name, Brand Name, Generic, Substance Name, Manufacturer and Application Number. Using our facet search users can narrow down their results by seriousness of the adverse event, gender, method of reporting, date of notification and age group. The search result page displays a pie chart along with the list of most common adverse reactions with count and percentage. The users can also share search results via an email.
 
 # Usage
 To re-create this application in other machine using the docker container: install docker first, pull our docker image from Docker Hub, then launch the docker. Follow these commands:
