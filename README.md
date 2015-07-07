@@ -14,6 +14,30 @@ To re-create this application in other machine using the docker container: insta
 docker pull vinothgovindarajan/drug-report-app
 docker run -it --rm --name drug-reporting-app drug-report-app -p 80:9000
 ```
+
+# Technology Stack
+## Core Stack
+* NodeJS
+* NPM
+* AngularJS
+* Bower
+
+## Unit Test Framework
+* Jasmine
+
+## Test Automation
+* Selenium 
+
+## Continious Integration
+* Jenkins
+
+## Continuous Monitoring
+* New Relic Browser
+
+## Server Technologies
+* Docker (to deploy our application in a container)
+* AWS (to host our application)
+
 # Dependencies
 
 Docker
@@ -28,7 +52,7 @@ Using Personas and design thinking techniques, we created initial set of wirefra
 
 We used the following open source technologies: JavaScript, AngularJS, Bootstrap, HTML5, CSS3, Node.js, C3, Docker (to deploy in a container), Jenkins (continuous integration), Selenium (integration test) and Jasmine (unit test), Grunt (task runner), Bower (configuration management). We deployed our prototype on AWS.
 
-We used Jasmine framework for unit testing using karma adapter. Our unit test covered each and every filter options for search and other features (email link, API feed query construction) [refer to these screenshots] (https://github.com/vinothgovindarajan/DrugReport/tree/master/evidence_docs/automated_test_selenium)
+We used Jasmine framework for unit testing using karma adapter. Our unit test covered each and every filter options for search and other features (email link, API feed query construction). We used Selenium to automate the integration and functionality test. [refer to these screenshots] (https://github.com/vinothgovindarajan/DrugReport/tree/master/evidence_docs/automated_test_selenium)
 
 We used Jenkins services for continuous integration and testing. These automated tests are written to provide consistent and reliable protection against unintentional regressions and enable us to release frequent updates to our prototype.  With our robust development methodology, continuous integration is used to maintain and automatically monitor code quality and code convergence metrics and ultimately keeping the maintenance costs low. [refer to these screenshots] (https://github.com/vinothgovindarajan/DrugReport/tree/master/evidence_docs/ci_jenkins)
 
