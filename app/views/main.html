@@ -17,17 +17,17 @@
         <div>
           <div class="checkbox">
             <label>
-              <input ng-model="chosen.isSerious" ng-change="seriousCheck()" type="checkbox">
+              <input ng-model="chosen.isSerious" ng-click="seriousCheck($event)" type="checkbox">
               Seriousness
               <div class="radio">
                 <label>
-                  <input type="radio" ng-change="seriousCheck()" ng-model="$parent.seriousness" value="1">
+                  <input type="radio" ng-click="seriousCheck($event)" ng-model="$parent.seriousness" value="1">
                   Serious
                 </label>
               </div>
               <div class="radio">
                 <label>
-                  <input type="radio" ng-change="seriousCheck()" ng-model="$parent.seriousness" value="2">
+                  <input type="radio" ng-click="seriousCheck($event)" ng-model="$parent.seriousness" value="2">
                   Non-Serious
                 </label>
               </div>
@@ -35,17 +35,17 @@
           </div>
           <div class="checkbox">
             <label>
-              <input ng-model="chosen.isReport" ng-change="reportCheck()" type="checkbox">
+              <input ng-model="chosen.isReport" ng-click="reportCheck($event)" type="checkbox">
               Method of Reporting
               <div class="radio">
                 <label>
-                  <input type="radio" ng-change="reportCheck()"  ng-model="$parent.reporting" value="1">
+                  <input type="radio" ng-click="reportCheck($event)"  ng-model="$parent.reporting" value="1">
                   Via Public
                 </label>
               </div>
               <div class="radio">
                 <label>
-                  <input type="radio" ng-change="reportCheck()" ng-model="$parent.reporting" value="2">
+                  <input type="radio" ng-click="reportCheck($event)" ng-model="$parent.reporting" value="2">
                   Via Manufacturer
                 </label>
               </div>
@@ -53,17 +53,17 @@
           </div>
           <div class="checkbox">
             <label>
-              <input ng-model="chosen.isGender" ng-change="genderCheck()" type="checkbox">
+              <input ng-model="chosen.isGender" ng-click="genderCheck($event)" type="checkbox">
               Gender
               <div class="radio">
                 <label>
-                  <input type="radio" ng-change="genderCheck()" ng-model="$parent.gender" value="1">
+                  <input type="radio" ng-click="genderCheck($event)" ng-model="$parent.gender" value="1">
                   Male
                 </label>
               </div>
               <div class="radio">
                 <label>
-                  <input type="radio" ng-change="genderCheck()" ng-model="$parent.gender" value="2">
+                  <input type="radio" ng-click="genderCheck($event)" ng-model="$parent.gender" value="2">
                   Female
                 </label>
               </div>
@@ -71,7 +71,7 @@
           </div>
           <div class="checkbox">
             <label>
-              <input ng-model="chosen.isAgeRange" ng-change="ageRangeCheck()" type="checkbox">
+              <input ng-model="chosen.isAgeRange" ng-click="ageRangeCheck($event)" type="checkbox">
               Age Group
             </label>
             <div class="form-group"><br/>
@@ -80,31 +80,31 @@
                 <input type="hidden" id="amount" readonly>
               </div>
               <div class="col-xs-5 col-sm-4">
-                <input type="number" class="form-control" id="min" ng-change="ageRangeCheck()" ng-model="$parent.fromage" min="1" max="100" placeholder="Min">
+                <input type="number" class="form-control" id="min" ng-change="ageRangeCheck($event)" ng-model="$parent.fromage" min="1" max="100" placeholder="Min">
               </div>
               <div class="col-xs-1 col-sm-1">
                 to
               </div>
               <div class="col-xs-5 col-sm-4">
-                <input type="number" class="form-control" id="max" ng-change="ageRangeCheck()" ng-model="$parent.toage" min="1" max="100" placeholder="Max">
+                <input type="number" class="form-control" id="max" ng-change="ageRangeCheck($event)" ng-model="$parent.toage" min="1" max="100" placeholder="Max">
               </div>
             </div>
           </div>
           <br/>
           <div class="checkbox">
             <label>
-              <input ng-model="chosen.isYear" ng-change="yearCheck()" type="checkbox">
+              <input ng-model="chosen.isYear" ng-click="yearCheck($event)" type="checkbox">
               Report Received on 
             </label>
             <div class="form-group"><br/>
               <div class="col-xs-5 col-sm-4">
-                <input type="number" class="form-control" ng-change="yearCheck()" ng-model="$parent.fromyear" min="1970" max="2015" placeholder="From Year">
+                <input type="number" class="form-control" ng-change="yearCheck($event)" ng-model="$parent.fromyear" min="1970" max="2015" placeholder="From Year">
               </div>
               <div class="col-xs-1 col-sm-1">
                 to
               </div>
               <div class="col-xs-5 col-sm-4">
-                <input type="number" class="form-control" ng-change="yearCheck()" ng-model="$parent.toyear" min="1970" max="2015" placeholder="To Year">
+                <input type="number" class="form-control" ng-change="yearCheck($event)" ng-model="$parent.toyear" min="1970" max="2015" placeholder="To Year">
               </div>
             </div>
           </div><br/>
@@ -158,7 +158,7 @@
           <td class="custTablePad">{{drug.term}}</td>
         </tr>
       </table><br/>
-      <a class="btn btn-default btn-sm" href="mailto:info@meliosystems.com?Subject=FDA%20Drug%20Suggestion&amp;body={{maildrugCURL}}">Email this report</a>
+      <a class="btn btn-default btn-sm" href="mailto:?Subject=Drug%20Report%20for%20{{searchedDrugName}}&amp;body={{maildrugCURL}}">Email this report</a>
       <br/><br/>
     </div>
     <div style="text-align: center;" ng-if="myloader == false && countDrugData.length == 0 && totalDrugData.length == 0">

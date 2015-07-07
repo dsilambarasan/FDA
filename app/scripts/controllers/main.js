@@ -21,7 +21,7 @@ angular.module('reportApp').controller('MainCtrl', function ($scope, drugUtiliti
   $scope.reporting   = 2;
   $scope.gender      = 2;
   $scope.fromage     = 1;
-  $scope.toage       = 120;
+  $scope.toage       = 100;
 
   $scope.fromyear    = 1970;
   $scope.toyear      = new Date().getFullYear();
@@ -212,7 +212,7 @@ angular.module('reportApp').controller('MainCtrl', function ($scope, drugUtiliti
     drugTURL += '';
     drugCURL += '&count=patient.reaction.reactionmeddrapt.exact';
 
-    $scope.drugFeedURL		=	drugTURL;
+    $scope.drugFeedURL    =  drugTURL;
     $scope.totalDrugDetails(drugTURL);
     $scope.countDrugDetails(drugCURL);
 
@@ -284,28 +284,38 @@ angular.module('reportApp').controller('MainCtrl', function ($scope, drugUtiliti
   },
 
   /* Check Seriousness Label */
-  $scope.seriousCheck    =   function() {
-    $scope.makeDrugURL();
+  $scope.seriousCheck    =   function(obj) {
+    if ((obj.target.type == 'radio' && $scope.chosen.isSerious) || (obj.target.type == 'checkbox')) {
+      $scope.makeDrugURL();
+    }
   },
 
   /* Check Method of Reporting Label */
-  $scope.reportCheck    =   function() {
-    $scope.makeDrugURL();
+  $scope.reportCheck    =   function(obj) {
+    if ((obj.target.type == 'radio' && $scope.chosen.isReport) || (obj.target.type == 'checkbox')) {
+      $scope.makeDrugURL();
+    }
   },
 
   /* Check Gender Label */
-  $scope.genderCheck    =   function() {
-    $scope.makeDrugURL();
+  $scope.genderCheck    =   function(obj) {
+    if ((obj.target.type == 'radio' && $scope.chosen.isGender) || (obj.target.type == 'checkbox')) {
+      $scope.makeDrugURL();
+    }
   },
 
   /* Check Age Group Label */
-  $scope.ageRangeCheck  =   function() {
-    $scope.makeDrugURL();
+  $scope.ageRangeCheck  =   function(obj) {
+    if ((!angular.isDefined(obj) && $scope.chosen.isAgeRange) || (angular.isDefined(obj) && obj.target.type == 'checkbox')) {
+      $scope.makeDrugURL();
+    }
   },
 
   /* Check Report Received On Label */
-  $scope.yearCheck = function() {
-    $scope.makeDrugURL();
+  $scope.yearCheck = function(obj) {
+    if ((!angular.isDefined(obj) && $scope.chosen.isYear) || (angular.isDefined(obj) && obj.target.type == 'checkbox')) {
+      $scope.makeDrugURL();
+    }
   };
 
 });
