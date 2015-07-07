@@ -6,21 +6,21 @@ DrugReport allows a user to quickly search for any drug related adverse events u
 The search criteria include seriousness, gender, method of reporting, year and age range. The search result page displays a pie chart along with the list of most common adverse reactions. The user can also share search results via email.
 
 # Usage
-To re-create this application in other machine using the docker container, run this command:
+To re-create this application in other machine using the docker container, run these commands:
 
 ```
 docker pull vinothgovindarajan/drug-report-app
 docker run -it --rm --name drug-reporting-app drug-report-app -p 80:9000
 ```
 
-# Demo App URL
+# Prototype URL
 Access our application from this URL: http://ec2-52-0-103-219.compute-1.amazonaws.com/
 
 # Dependencies
 
 Docker
 
-# Dev Process
+# Approach used to create this prototype
 
 We identified a product owner and made him responsible to manage user requirements and development methodology to comply with RFQ requirements. He had the full authority to assign tasks, make business, product and technical decisions to develop the prototype. He was made accountable for the ultimate failure or success of our solution.
 
@@ -37,7 +37,7 @@ We used Jenkins services for continuous integration and testing. These automated
 
 We used NPM for node.js package management and Bower for client side package management(AngularJS, D3, C3, jQuery)
 
-We used New Relic Application Performance Monitoring (APM) for continuous monitoring and to troubleshot performance problems in the application.
+We used New Relic Browser for continuous monitoring and to troubleshot performance problems in the application [refer to this screenshot] (https://github.com/vinothgovindarajan/DrugReport/tree/master/evidence_docs/cm_new_relic)
 
 We used Docker services to deploy our prototype. We pushed our Docker image into the DockerHub public repository, here is the URL of our Docker image: 
 
