@@ -1,6 +1,3 @@
-# Prototype URL
-Access our application from this URL: http://ec2-52-0-103-219.compute-1.amazonaws.com/
-
 # DrugReport
 DrugReport allows a user to quickly search for any drug related adverse events using faceted search criteria. DrugReport is powered by openFDA (https://open.fda.gov) dataset and Application Programming Interface (API). The search result is displayed in a responsive layout so users can access DrugReport using mobile devices as well.
 
